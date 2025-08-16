@@ -1,8 +1,14 @@
-import { createStore } from "redux";
+import { createStore , combineReducers } from "redux";
 import { counterReducer } from "./reducers/counterReducer"; // Adjust the path as necessary
+import { userReducer } from "./reducers/userReducer"; // Adjust the path as necessary
+
+const rootReducer = combineReducers({
+  counter: counterReducer,
+  user:userReducer
+});
 
 // Create store without any middleware
-export const store = createStore(counterReducer);
+export const store = createStore(rootReducer);
 
 
 // Debug line
