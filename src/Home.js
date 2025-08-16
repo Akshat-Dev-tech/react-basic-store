@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { action } from './store/actions/action'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -8,9 +9,15 @@ const Home = () => {
   return (
     <>
       <div>Home</div>
-        <button onClick={()=>dispatch({type:'INCREMENT'})}>Increment</button>
+        {/* <button onClick={()=>dispatch({type:'INCREMENT'})}>Increment</button>
         <button onClick={() => dispatch({ type: 'DECREMENT' })}>Decrement</button>  
         <button onClick={() => dispatch({ type: 'RESET' })}>Reset</button>
+        <input type="text" placeholder="Enter User Name"  onChange={handleTxt}/>
+        <button onClick={() => dispatch({ type: 'SETUSER', payload: txt })}>Set User</button> */}
+
+        <button onClick={()=>dispatch(action('INCREMENT'))}>Increment</button>
+        <button onClick={() => dispatch(action('DECREMENT' ))}>Decrement</button>  
+        <button onClick={() => dispatch(action( 'RESET' ))}>Reset</button>
         <input type="text" placeholder="Enter User Name"  onChange={handleTxt}/>
         <button onClick={() => dispatch({ type: 'SETUSER', payload: txt })}>Set User</button>
     </>
