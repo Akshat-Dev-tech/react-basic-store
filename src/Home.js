@@ -14,7 +14,7 @@ const Home = () => {
         <button onClick={() => dispatch({ type: 'RESET' })}>Reset</button>
         <input type="text" placeholder="Enter User Name"  onChange={handleTxt}/>
         <button onClick={() => dispatch({ type: 'SETUSER', payload: txt })}>Set User</button> */}
-        
+
         {/*since fn returns an plain object, we can use it without adding middleware */}
         <button onClick={()=>dispatch(action('INCREMENT'))}>Increment</button>
         <button onClick={() => dispatch(action('DECREMENT' ))}>Decrement</button>  
