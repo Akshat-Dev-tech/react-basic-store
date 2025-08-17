@@ -20,7 +20,19 @@ const Home = () => {
         <button onClick={() => dispatch(action('DECREMENT' ))}>Decrement</button>  
         <button onClick={() => dispatch(action( 'RESET' ))}>Reset</button>
         <input type="text" placeholder="Enter User Name"  onChange={handleTxt}/>
+
+    {/*  this is still works because we don’t have to make an actions.js file — Redux only cares that dispatch() receives a plain object with a type property. */}
+    {/* 
+    // Without actions.js
+    dispatch({ type: "SETUSER", payload: txt });
+
+    // With actions.js (action creator) this is returning the plain object
+    dispatch(action("SETUSER", txt)); */}
+
+
         <button onClick={() => dispatch({ type: 'SETUSER', payload: txt })}>Set User</button>
+
+        
     </>
   )
 }
