@@ -6,12 +6,14 @@ import {thunk} from "redux-thunk"; // Import thunk middleware
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas/rootSaga";
 import { productSagaReducer } from "./reducers/productSagaReducer";
+import { userSagaReducer } from "./reducers/userSagaReducer";
 
 const rootReducer = combineReducers({
   counter: counterReducer,
   user:userReducer,
   product:productReducer,
-  sagaproduct:productSagaReducer
+  sagaproduct:productSagaReducer,
+  usersaga:userSagaReducer
 });
 
 // Create saga middleware

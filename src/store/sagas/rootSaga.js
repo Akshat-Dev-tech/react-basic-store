@@ -18,6 +18,17 @@ function* getProducstsSaga() {
     }
 }
 
+function* getUsersSaga() {
+    try {
+        yield delay(1000);
+        const data = yield call(fetch, 'https://jsonplaceholder.typicode.com/users');
+        const users = yield call([data, 'json']);
+        yield put({ type: 'SHOW_USERS', payload: users });
+    } catch (error) {
+        console.error('Error fetching users:', error);
+    }
+}
+
 // PROBLEM STATEMENT:
 // takeLatest was not working because:
 // 1. Used async/await functions which can't be cancelled by Redux Saga
@@ -31,6 +42,7 @@ function* getProducstsSaga() {
 
 function* rootSaga() {
     yield takeLatest('FETCH_PRODUCTS_SAGA', getProducstsSaga);
+    yield takeLatest('FETCH_USERS_SAGA', getUsersSaga);
 }
 
 export default rootSaga;

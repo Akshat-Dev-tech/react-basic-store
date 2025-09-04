@@ -7,11 +7,18 @@ const Productsaga = () => {
   const handleShowProductsSaga = () => {
     dispatch({ type: 'FETCH_PRODUCTS_SAGA' });
   }
+
+  const handleShowUsersSaga = () => {
+    dispatch({ type: 'FETCH_USERS_SAGA' });
+  }
+
+  const users = useSelector((state) => state.usersaga)
   const products = useSelector((state) => state.sagaproduct)
   return (
     <>
       <div>Product</div>
       <button onClick={handleShowProductsSaga}>Show Products Saga</button>
+      <button onClick={handleShowUsersSaga}>Show Users Saga</button>
       {
         products.length > 0 ? (
           <div>
@@ -25,6 +32,20 @@ const Productsaga = () => {
           </div>
         ) : (
           <p>No products available</p>
+        )
+      }
+      {
+        users.length > 0 ? (
+          <div>
+            {users.map((user) => (
+              <div key={user.id}>
+                <h3>{user.name}</h3>
+                <p>{user.email}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No users available</p>
         )
       }
     </>
