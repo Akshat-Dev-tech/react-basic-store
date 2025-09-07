@@ -40,9 +40,28 @@ function* getUsersSaga() {
 // 2. Added delay() to simulate realistic API response time
 // 3. Fixed reducer to replace state instead of accumulating results
 
+
+// Single saga to handle both actions
+function* handleDataFetch(action) {
+    try {
+        if (action.type === 'FETCH_PRODUCTS_SAGA') {
+            const response = yield call(getProducstsSaga);
+        } else if (action.type === 'FETCH_USERS_SAGA') {
+            const users = yield call(getUsersSaga);
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+
+
 function* rootSaga() {
-    yield takeLatest('FETCH_PRODUCTS_SAGA', getProducstsSaga);
-    yield takeLatest('FETCH_USERS_SAGA', getUsersSaga);
+    // yield takeLatest('FETCH_PRODUCTS_SAGA', getProducstsSaga);
+    // yield takeLatest('FETCH_USERS_SAGA', getUsersSaga);
+
+        // This will cancel any ongoing API call when either button is clicked
+        yield takeLatest(['FETCH_PRODUCTS_SAGA', 'FETCH_USERS_SAGA'], handleDataFetch);
 }
 
 export default rootSaga;
